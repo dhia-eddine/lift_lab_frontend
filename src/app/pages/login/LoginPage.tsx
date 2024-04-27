@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import pfa_logo from '../../../assets/pfa_logo-3.png';
+import pfa_logo from '../../../assets/pfa_logo_3.png';
+
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,10 +29,11 @@ function LoginPage() {
       localStorage.setItem('access_token', access_token);
 
       // Redirect to the desired page upon successful login
-      navigate('/dashboard');
+      navigate('/home');
     } else {
       // Handle authentication failure
-      console.error('Authentication failed');
+      const data = await response.json();
+      setError(data.message); // Assuming the error message is provided in the response
     }
   };
 
@@ -47,6 +50,10 @@ function LoginPage() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="text-red-500 text-sm">{error}</div>
+            )}
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
