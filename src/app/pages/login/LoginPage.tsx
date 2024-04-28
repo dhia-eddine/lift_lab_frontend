@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import pfa_logo from '../../../assets/pfa_logo_3.png';
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import pfa_logo from "../../../assets/pfa_logo_3.png";
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Send POST request to backend for authentication
-    const response = await fetch('http://localhost:3000/auth/sign-in', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3000/auth/sign-in", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
@@ -26,10 +25,10 @@ function LoginPage() {
       const { access_token } = data;
 
       // Store the access token in local storage
-      localStorage.setItem('access_token', access_token);
+      localStorage.setItem("access_token", access_token);
 
       // Redirect to the desired page upon successful login
-      navigate('/home');
+      navigate("/");
     } else {
       // Handle authentication failure
       const data = await response.json();
@@ -50,12 +49,13 @@ function LoginPage() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {error && (
-              <div className="text-red-500 text-sm">{error}</div>
-            )}
+            {error && <div className="text-red-500 text-sm">{error}</div>}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -74,7 +74,10 @@ function LoginPage() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Password
                 </label>
               </div>
