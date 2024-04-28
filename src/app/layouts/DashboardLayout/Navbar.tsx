@@ -11,7 +11,6 @@ const navigation = [
   { name: "Coachs", href: "/coachs", current: false },
   { name: "Members", href: "/members", current: false },
   { name: "login", href: "/login", current: false },
-  { name: "Calendar", href: "#", current: false },
 ];
 
 export default function Navbar() {
