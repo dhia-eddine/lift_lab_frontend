@@ -3,7 +3,9 @@ import LoginPage from "../pages/login/LoginPage";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import CoursesPage from "../pages/Coachs/CoachsPage";
 import Home from "../pages/home/Home";
+//import AddMembersPage from "../pages/Members/AddMembersPage";
 import MembersPage from "../pages/Members/MembersPage";
+
 const AppRouter = () => {
   return (
     <BrowserRouter>
