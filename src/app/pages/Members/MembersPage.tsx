@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import avatar from "../../../assets/avatar.png";
+import { Link } from "react-router-dom";
 
 interface Member {
   id: number;
@@ -75,6 +76,14 @@ export default function Members() {
 
   return (
     <div>
+      <div className="mt-6 flex items-center sm:justify-end gap-x-6 pb-4 justify-center sm:pr-9">
+        <Link
+          to="addmember" // Relative path to the nested route
+          className="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+        >
+          Add Member
+        </Link>
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (

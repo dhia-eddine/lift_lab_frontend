@@ -5,6 +5,7 @@ import CoursesPage from "../pages/Coachs/CoachsPage";
 import Home from "../pages/home/Home";
 //import AddMembersPage from "../pages/Members/AddMembersPage";
 import MembersPage from "../pages/Members/MembersPage";
+import AddMembersPage from "../pages/Members/AddMembersPage";
 
 const AppRouter = () => {
   return (
@@ -14,8 +15,9 @@ const AppRouter = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Home />} />
-          <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/members" element={<MembersPage />} />
+          <Route path="courses" element={<CoursesPage />} />
+          <Route path="members" element={<MembersPage />} />
+          <Route path="members/addmember" element={<AddMembersPage />} />
         </Route>
 
         {/* Use the "element" prop instead of "Component" */}
