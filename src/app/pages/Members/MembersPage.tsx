@@ -109,14 +109,9 @@ export default function Members() {
         return new Date(); // Or provide a fallback value or handle the error appropriately
       }
 
-      const data = await response.json(); // Assuming the JSON response contains a startDate field
-      const startDate = new Date(data);
-      const formattedDate = startDate.toLocaleDateString("en-US", {
-        month: "short",
-        day: "2-digit",
-        year: "numeric",
-      });
-      return formattedDate;
+      const data = await response.json();
+
+      return new Date(data); // Assuming the JSON response contains a startDate field
     } catch (error) {
       console.error(`Error fetching start date for member ${memberId}:`, error);
       return new Date(); // Or provide a fallback value or handle the error appropriately
@@ -152,7 +147,17 @@ export default function Members() {
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                       {startDayMap.has(member.id)
-                        ? `Active member, Since ${startDayMap.get(member.id)}`
+                        ? startDayMap.get(member.id) === new Date("2000-01-01")
+                          ? "Start date not available"
+                          : `Active member, Since ${
+                              startDayMap
+                                .get(member.id)
+                                ?.toLocaleDateString("en-US", {
+                                  month: "short",
+                                  day: "2-digit",
+                                  year: "numeric",
+                                }) || "Start date not available"
+                            }`
                         : "Start date not available"}
                     </p>
                   </div>
