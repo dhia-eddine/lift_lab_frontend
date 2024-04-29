@@ -13,6 +13,8 @@ export default function Members() {
   const [expirationDaysMap, setExpirationDaysMap] = useState<
     Map<number, number>
   >(new Map());
+  const [startDayMap, setStartDayMap] = useState<Map<number, Date>>(new Map());
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,6 +42,15 @@ export default function Members() {
         const expirationDaysResults = await Promise.all(expirationDaysPromises);
         const expirationDaysMap = new Map(expirationDaysResults);
         setExpirationDaysMap(expirationDaysMap);
+
+        // Fetch dtart days for each member
+        const startDayMapPromises = membersData.map(async (member) => {
+          const startDayResponse = await fetchStartDay(member.id, accessToken);
+          return [member.id, startDayResponse] as [number, Date];
+        });
+        const startDayResults = await Promise.all(startDayMapPromises);
+        const startDayMap = new Map(startDayResults);
+        setStartDayMap(startDayMap);
 
         setLoading(false);
       } catch (error) {
@@ -74,6 +85,44 @@ export default function Members() {
     }
   };
 
+  const fetchStartDay = async (
+    memberId: number,
+    token: string | null
+  ): Promise<Date> => {
+    if (!token) return new Date("2000-01-01");
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/clients/first-subscription-date/${memberId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        // Handle non-OK responses (e.g., 404 Not Found)
+        console.error(
+          `Error fetching start date for member ${memberId}: ${response.status} ${response.statusText}`
+        );
+        return new Date(); // Or provide a fallback value or handle the error appropriately
+      }
+
+      const data = await response.json(); // Assuming the JSON response contains a startDate field
+      const startDate = new Date(data);
+      const formattedDate = startDate.toLocaleDateString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      });
+      return formattedDate;
+    } catch (error) {
+      console.error(`Error fetching start date for member ${memberId}:`, error);
+      return new Date(); // Or provide a fallback value or handle the error appropriately
+    }
+  };
+
   return (
     <div className="pl-10 pr-10">
       {loading ? (
@@ -102,7 +151,9 @@ export default function Members() {
                       {member.name}
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      Active member, Since
+                      {startDayMap.has(member.id)
+                        ? `Active member, Since ${startDayMap.get(member.id)}`
+                        : "Start date not available"}
                     </p>
                   </div>
                 </div>
