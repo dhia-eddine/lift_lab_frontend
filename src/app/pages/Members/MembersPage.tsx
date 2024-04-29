@@ -75,19 +75,19 @@ export default function Members() {
   };
 
   return (
-    <div>
-      <div className="mt-6 flex items-center sm:justify-end gap-x-6 pb-4 justify-center sm:pr-9">
-        <Link
-          to="addmember" // Relative path to the nested route
-          className="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-        >
-          Add Member
-        </Link>
-      </div>
+    <div className="pl-10 pr-10">
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
+          <div className="mt-6 flex items-center sm:justify-end gap-x-6 pb-4 justify-center sm:pr-9">
+            <Link
+              to="addmember" // Relative path to the nested route
+              className="rounded-md bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              Add Member
+            </Link>
+          </div>
           <ul role="list" className="divide-y divide-gray-100 pl-10 pr-10">
             {members.map((member) => (
               <li key={member.id} className="flex justify-between gap-x-6 py-5">
@@ -101,12 +101,17 @@ export default function Members() {
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                       {member.name}
                     </p>
+                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                      Active member, Since
+                    </p>
                   </div>
                 </div>
                 <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                   <p className="text-sm leading-6 text-gray-900">
                     {expirationDaysMap.has(member.id)
-                      ? `Expires in ${expirationDaysMap.get(member.id)} days`
+                      ? expirationDaysMap.get(member.id) === -1
+                        ? "Expiration not available"
+                        : `Expires in ${expirationDaysMap.get(member.id)} days`
                       : "Expiration not available"}
                   </p>
                 </div>

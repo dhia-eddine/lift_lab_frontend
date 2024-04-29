@@ -35,7 +35,7 @@ function AddMembersPage() {
 
       if (response.ok) {
         // Successfully saved data
-        navigate("/"); // Redirect to desired page
+        navigate("/members"); // Redirect to desired page
       } else {
         const data = await response.json();
         setError(data.message); // Handle backend error message
@@ -67,11 +67,8 @@ function AddMembersPage() {
       <div className="items-center justify-between pl-10 pr-10 pt-8">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
-            Personal Information
+            Add Member
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            Use a permanent address where you can receive mail.
-          </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-5 ">
             <div className="sm:col-span-2">
