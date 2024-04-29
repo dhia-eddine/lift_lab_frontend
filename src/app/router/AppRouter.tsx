@@ -3,9 +3,9 @@ import LoginPage from "../pages/login/LoginPage";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import CoursesPage from "../pages/Coachs/CoachsPage";
 import Home from "../pages/home/Home";
-//import AddMembersPage from "../pages/Members/AddMembersPage";
 import MembersPage from "../pages/Members/MembersPage";
 import AddMembersPage from "../pages/Members/AddMembersPage";
+import MemberDetailsPage from "../pages/Members/MemberDetailsPage";
 
 const AppRouter = () => {
   return (
@@ -18,6 +18,10 @@ const AppRouter = () => {
           <Route path="courses" element={<CoursesPage />} />
           <Route path="members" element={<MembersPage />} />
           <Route path="members/addmember" element={<AddMembersPage />} />
+          <Route
+            path="members/details/:memberId"
+            element={<MemberDetailsPage />}
+          />
         </Route>
 
         {/* Use the "element" prop instead of "Component" */}

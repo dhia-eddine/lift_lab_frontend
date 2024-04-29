@@ -132,46 +132,58 @@ export default function Members() {
               Add Member
             </Link>
           </div>
-          <ul role="list" className="divide-y divide-gray-100 pl-10 pr-10">
+          <ul
+            role="list"
+            className="divide-y divide-gray-100 sm:pl-10 sm:pr-10"
+          >
             {members.map((member) => (
-              <li key={member.id} className="flex justify-between gap-x-6 py-5">
-                <div className="flex min-w-0 gap-x-4">
-                  <img
-                    className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                    src={member.picture || avatar}
-                    alt=""
-                  />
-                  <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
-                      {member.name}
-                    </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {startDayMap.has(member.id)
-                        ? startDayMap.get(member.id) === new Date("2000-01-01")
-                          ? "Start date not available"
-                          : `Active member, Since ${
-                              startDayMap
-                                .get(member.id)
-                                ?.toLocaleDateString("en-US", {
-                                  month: "short",
-                                  day: "2-digit",
-                                  year: "numeric",
-                                }) || "Start date not available"
-                            }`
-                        : "Start date not available"}
+              <Link
+                to={`/members/details/${member.id}`}
+                key={member.id}
+                className="rounded-full block  border-gray-200 hover:bg-blue-100 mb-2 "
+              >
+                <li className="flex justify-between gap-x-6 py-5 pl-5 pr-5">
+                  <div className="flex min-w-0 gap-x-4">
+                    <img
+                      className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                      src={member.picture || avatar}
+                      alt=""
+                    />
+                    <div className="min-w-0 flex-auto">
+                      <p className="text-sm font-semibold leading-6 text-gray-900">
+                        {member.name}
+                      </p>
+                      <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                        {startDayMap.has(member.id)
+                          ? startDayMap.get(member.id) ===
+                            new Date("2000-01-01")
+                            ? "Start date not available"
+                            : `Active member, Since ${
+                                startDayMap
+                                  .get(member.id)
+                                  ?.toLocaleDateString("en-US", {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric",
+                                  }) || "Start date not available"
+                              }`
+                          : "Start date not available"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <p className="text-sm leading-6 text-gray-900">
+                      {expirationDaysMap.has(member.id)
+                        ? expirationDaysMap.get(member.id) === -1
+                          ? "Expiration not available"
+                          : `Expires in ${expirationDaysMap.get(
+                              member.id
+                            )} days`
+                        : "Expiration not available"}
                     </p>
                   </div>
-                </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                  <p className="text-sm leading-6 text-gray-900">
-                    {expirationDaysMap.has(member.id)
-                      ? expirationDaysMap.get(member.id) === -1
-                        ? "Expiration not available"
-                        : `Expires in ${expirationDaysMap.get(member.id)} days`
-                      : "Expiration not available"}
-                  </p>
-                </div>
-              </li>
+                </li>
+              </Link>
             ))}
           </ul>
         </>
