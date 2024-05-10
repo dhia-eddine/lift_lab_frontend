@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
 
 function AddMembersPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ function AddMembersPage() {
 
     // Send POST request to backend
     try {
-      const response = await fetch("http://localhost:3000/clients", {
+      const response = await fetch(api.defaults.baseURL + "/clients", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

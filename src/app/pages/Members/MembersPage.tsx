@@ -78,6 +78,10 @@ export default function Members() {
         }
       );
       const data = await response.json();
+      if ((data as number) < 0) {
+        return -1;
+      }
+
       return data as number;
     } catch (error) {
       console.error("Error fetching expiration date:", error);
@@ -175,11 +179,11 @@ export default function Members() {
                     <p className="text-sm leading-6 text-gray-900">
                       {expirationDaysMap.has(member.id)
                         ? expirationDaysMap.get(member.id) === -1
-                          ? "Expiration not available"
+                          ? "Subscription Expired"
                           : `Expires in ${expirationDaysMap.get(
                               member.id
                             )} days`
-                        : "Expiration not available"}
+                        : "Subscription Expired"}
                     </p>
                   </div>
                 </li>

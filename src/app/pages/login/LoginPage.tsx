@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pfa_logo from "../../../assets/pfa_logo_3.png";
+import api from "../../services/api";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,28 +12,33 @@ function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Send POST request to backend for authentication
-    const response = await fetch("http://localhost:3000/auth/sign-in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      // Send POST request to backend for authentication
+      const response = await fetch(api.defaults.baseURL + "/auth/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      const { access_token } = data;
+      if (response.ok) {
+        const data = await response.json();
+        const { access_token } = data;
 
-      // Store the access token in local storage
-      localStorage.setItem("access_token", access_token);
+        // Store the access token in local storage
+        localStorage.setItem("access_token", access_token);
 
-      // Redirect to the desired page upon successful login
-      navigate("/");
-    } else {
-      // Handle authentication failure
-      const data = await response.json();
-      setError(data.message); // Assuming the error message is provided in the response
+        // Redirect to the desired page upon successful login
+        navigate("/");
+      } else {
+        // Handle authentication failure
+        const data = await response.json();
+        setError(data.message); // Assuming the error message is provided in the response
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      setError("An error occurred during authentication.");
     }
   };
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import api from "../../services/api";
 
 interface MemberData {
   name: string;
@@ -30,7 +31,7 @@ function AddMembersPage() {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/clients/${memberId}`,
+          api.defaults.baseURL + `/clients/${memberId}`,
           {
             method: "GET",
             headers: {
@@ -66,7 +67,7 @@ function AddMembersPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/clients/${memberId}`,
+        api.defaults.baseURL + `/clients/${memberId}`,
         {
           method: "PUT",
           headers: {
