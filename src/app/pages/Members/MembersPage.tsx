@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import avatar from "../../../assets/avatar.png";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 interface Member {
   id: number;
@@ -185,6 +186,12 @@ export default function Members() {
                             )} days`
                         : "Subscription Expired"}
                     </p>
+                    <div className="flex items-center space-x-4 mt-2">
+                      <FaEdit className="text-blue-500 cursor-pointer" />{" "}
+                      {/* Edit icon */}
+                      <FaTrashAlt className="text-red-500 cursor-pointer" />{" "}
+                      {/* Delete icon */}
+                    </div>
                   </div>
                 </li>
               </Link>

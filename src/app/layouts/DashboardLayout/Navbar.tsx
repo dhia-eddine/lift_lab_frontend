@@ -11,7 +11,9 @@ const navigation = [
   { name: "Dashboard", href: "/", current: false },
   { name: "Coachs", href: "/coachs", current: false },
   { name: "Members", href: "/members", current: false },
-  { name: "login", href: "/login", current: false },
+  { name: "Subscription", href: "/login", current: false },
+  { name: "Offers", href: "/login", current: false },
+  { name: "Sessions", href: "/login", current: false },
 ];
 
 export default function Navbar() {

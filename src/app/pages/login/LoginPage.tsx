@@ -45,6 +45,7 @@ function LoginPage() {
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8 space-y-0">
+        {" "}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-200 w-auto"
@@ -52,7 +53,6 @@ function LoginPage() {
             alt="Your Company"
           />
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {error && <div className="text-red-500 text-sm">{error}</div>}
