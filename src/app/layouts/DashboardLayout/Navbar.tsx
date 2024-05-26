@@ -8,12 +8,12 @@ import { Link } from "react-router-dom";
 import avatar from "../../../assets/avatar.png";
 
 const navigation = [
-  { name: "Dashboard", href: "/", current: false },
+  { name: "Dashboard", href: "/home", current: false },
   { name: "Coachs", href: "/coachs", current: false },
   { name: "Members", href: "/members", current: false },
   { name: "Subscription", href: "/login", current: false },
   { name: "Offers", href: "/offers", current: false },
-  { name: "Sessions", href: "/login", current: false },
+  { name: "Sessions", href: "/session", current: false },
 ];
 
 export default function Navbar() {

@@ -7,18 +7,20 @@ import MembersPage from "../pages/Members/MembersPage";
 import AddMembersPage from "../pages/Members/AddMembersPage";
 import MemberDetailsPage from "../pages/Members/MemberDetailsPage";
 import OffersPage from "../pages/offers/OffersPage";
+import SessionPage from "../pages/session/SessionPage";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* Wrap your routes with <Routes> */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="coachs" element={<CoursesPage />} />
           <Route path="members" element={<MembersPage />} />
           <Route path="offers" element={<OffersPage />} />
+          <Route path="session" element={<SessionPage />} />
 
           <Route path="members/addmember" element={<AddMembersPage />} />
           <Route

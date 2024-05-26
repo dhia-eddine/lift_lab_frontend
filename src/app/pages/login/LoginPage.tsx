@@ -30,7 +30,7 @@ function LoginPage() {
         localStorage.setItem("access_token", access_token);
 
         // Redirect to the desired page upon successful login
-        navigate("/");
+        navigate("/home");
       } else {
         // Handle authentication failure
         const data = await response.json();
