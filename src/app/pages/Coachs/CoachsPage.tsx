@@ -8,27 +8,27 @@ const initialCoaches = [
   },
   {
     name: "Emily",
-    email: "Emily@example.com",
+    email: "Emily@gmail.com",
     role: "Fitness coach",
   },
   {
-    name: "David",
-    email: "David@example.com",
+    name: "Dia",
+    email: "dia@gmail.com",
     role: "Meditation coach",
   },
   {
     name: "Sarah",
-    email: "Sarah@example.com",
+    email: "Sarah@gmail.com",
     role: "Nutrition coach",
   },
   {
-    name: "Michael",
-    email: "Michael@example.com",
+    name: "Ahmed",
+    email: "ahmed@gmail.com",
     role: "Strength coach",
   },
   {
-    name: "Jessica",
-    email: "Jessica@example.com",
+    name: "Hayat",
+    email: "hayat@gmail.com",
     role: "Life coach",
   },
 ];

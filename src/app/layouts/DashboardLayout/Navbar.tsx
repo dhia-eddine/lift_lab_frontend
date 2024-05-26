@@ -11,8 +11,7 @@ const navigation = [
   { name: "Dashboard", href: "/home", current: false },
   { name: "Coachs", href: "/coachs", current: false },
   { name: "Members", href: "/members", current: false },
-  { name: "Subscription", href: "/login", current: false },
-  { name: "Offers", href: "/offers", current: false },
+  { name: "Subscription", href: "/offers", current: false },
   { name: "Sessions", href: "/session", current: false },
 ];
 
@@ -36,11 +35,11 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex  items-center">
-                  <img className="h-10 w-auto" src={pfa_logo} />
+                <div className="flex  items-center ">
+                  <img className="h-16 w-16" src={pfa_logo} />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 mt-2">
                     {navigation.map((item) => (
                       <NavLink
                         key={item.name}
@@ -70,8 +69,8 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src={avatar}
+                        className="h-10 w-10 rounded-full bg-white border-2 border-gray-500"
+                        src={pfa_logo}
                         alt=""
                       />
                     </Menu.Button>

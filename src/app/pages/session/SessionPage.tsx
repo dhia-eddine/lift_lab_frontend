@@ -12,20 +12,20 @@ function SessionPage() {
   // Set the initial state with an empty array of Session objects
   const [sessions, setSessions] = useState<Session[]>([
     {
-      title: "Session 1",
-      date: "2024-06-01",
+      title: "Fitness session",
+      date: "2024-05-27",
       time: "09:00",
       maxParticipants: 20,
     },
     {
-      title: "Session 2",
-      date: "2024-06-05",
+      title: "Yoga session ",
+      date: "2024-06-01",
       time: "14:00",
       maxParticipants: 15,
     },
     {
-      title: "Session 3",
-      date: "2024-06-10",
+      title: "Strength session",
+      date: "2024-5-29",
       time: "11:30",
       maxParticipants: 25,
     },
