@@ -6,6 +6,7 @@ import Home from "../pages/home/Home";
 import MembersPage from "../pages/Members/MembersPage";
 import AddMembersPage from "../pages/Members/AddMembersPage";
 import MemberDetailsPage from "../pages/Members/MemberDetailsPage";
+import OffersPage from "../pages/offers/OffersPage";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,8 @@ const AppRouter = () => {
           <Route index element={<Home />} />
           <Route path="coachs" element={<CoursesPage />} />
           <Route path="members" element={<MembersPage />} />
+          <Route path="offers" element={<OffersPage />} />
+
           <Route path="members/addmember" element={<AddMembersPage />} />
           <Route
             path="members/details/:memberId"

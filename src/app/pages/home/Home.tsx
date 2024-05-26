@@ -23,9 +23,10 @@ const subscriptionData = {
     {
       label: "Subscription Trends",
       data: [25, 30, 38, 42, 47, 51, 55, 60, 65, 70, 75, 80],
-      fill: false,
-      backgroundColor: "rgb(59, 130, 246)",
-      borderColor: "rgba(59, 130, 246, 0.2)",
+      fill: true,
+      backgroundColor: "rgba(59, 130, 246, 0.2)",
+      borderColor: "rgb(59, 130, 246)",
+      borderWidth: 2,
     },
   ],
 };
@@ -79,7 +80,7 @@ const Home: React.FC = () => {
           <Line data={subscriptionData} height={400} width={600} />
         </div>
         <div className="bg-white rounded-lg shadow-md p-6">
-          <Bar data={earningData} />
+          <Bar data={earningData} height={400} width={600} />
         </div>
       </div>
     </div>
