@@ -82,6 +82,7 @@ const Home: React.FC = () => {
         <div className="bg-white rounded-lg shadow-md p-6">
           <Bar data={earningData} height={400} width={600} />
         </div>
+        <div></div>
       </div>
     </div>
   );
