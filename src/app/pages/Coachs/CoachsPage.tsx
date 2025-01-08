@@ -33,29 +33,43 @@ const initialCoaches = [
   },
 ];
 
-const CoachsPage = () => {
+const CoachesPage = () => {
   const [coaches, setCoaches] = useState(initialCoaches);
   const [showForm, setShowForm] = useState(false);
   const [newCoach, setNewCoach] = useState({ name: "", email: "", role: "" });
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setCoaches([...coaches, newCoach]);
-    setNewCoach({ name: "", email: "", role: "" });
-    setShowForm(false);
+    if (newCoach.name && newCoach.email && newCoach.role) {
+      setCoaches([...coaches, newCoach]);
+      setNewCoach({ name: "", email: "", role: "" });
+      setShowForm(false);
+      setError("");
+    } else {
+      setError("All fields are required.");
+    }
   };
 
   const handleAddCoach = () => {
     setShowForm(true);
   };
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
+  const handleCancel = () => {
+    setShowForm(false);
+    setError("");
+    setNewCoach({ name: "", email: "", role: "" });
+  };
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const { name, value } = event.target;
     setNewCoach((prevCoach) => ({
       ...prevCoach,
       [name]: value,
     }));
-  }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen py-8">
@@ -66,13 +80,14 @@ const CoachsPage = () => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={handleAddCoach}
           >
-            Add Coach
+            Add new Coach
           </button>
         </div>
         {showForm && (
           <div className="mb-6">
             <h2 className="text-xl font-bold mb-2">Add New Coach</h2>
             <form onSubmit={handleSubmit}>
+              {error && <p className="text-red-500 mb-4">{error}</p>}
               <div className="mb-4">
                 <label htmlFor="name" className="block font-bold mb-2">
                   Name
@@ -112,12 +127,21 @@ const CoachsPage = () => {
                   className="border border-gray-400 p-2 w-full"
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Add Coach
-              </button>
+              <div className="flex justify-between">
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Add Coach
+                </button>
+                <button
+                  type="button"
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         )}
@@ -143,4 +167,4 @@ const CoachsPage = () => {
   );
 };
 
-export default CoachsPage;
+export default CoachesPage;
